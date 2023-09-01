@@ -1,4 +1,4 @@
-import {getData} from "./api.js";
+import { getData } from "./api.js";
 
 const postsNode = document.querySelector('#posts')
 const postsUrl = 'https://jsonplaceholder.typicode.com/posts'
@@ -33,4 +33,4 @@ const getPosts = async function () {
     }
 }
 
-export {getPosts}
+export { getPosts }

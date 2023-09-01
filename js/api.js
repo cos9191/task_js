@@ -1,5 +1,8 @@
+import { showLoader, hideLoader } from "./loader.js"
+
 const getData = async (Url, onSuccess, onError) => {
     try {
+        showLoader()
         const response = await fetch(Url)
         if (response.ok) {
             const data = await response.json()
@@ -9,6 +12,8 @@ const getData = async (Url, onSuccess, onError) => {
 
     } catch (err) {
         onError(err)
+    } finally {
+        hideLoader()
     }
 }
 
