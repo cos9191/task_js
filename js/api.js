@@ -11,7 +11,10 @@ const getData = async (Url, onSuccess, onError) => {
         throw new Error(`${response.status} ${response.statusText}`)
 
     } catch (err) {
-        onError(err)
+        onError(`
+            ${err}
+            Обновите страницу или попробуйте позже
+            `)
     } finally {
         hideLoader()
     }

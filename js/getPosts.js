@@ -1,4 +1,5 @@
-import { getData } from "./api.js";
+import { getData } from "./api.js"
+import { getComments } from "./getComments.js"
 
 const postsNode = document.querySelector('#posts')
 const postsUrl = 'https://jsonplaceholder.typicode.com/posts'
@@ -11,7 +12,24 @@ const renderPost = (post) => {
         <span>User: ${post.userId}</span>
         <h2>${post.title}</h2>
         <p>${post.body}</p>
+        <ul class="post__comments-wrapper"></ul>
     `
+
+    const commentsNode = postElement.querySelector('.post__comments-wrapper')
+    const toggleComments = (commentsNode) => {
+        if (commentsNode.children.length) {
+            if (commentsNode.style.display === 'none') {
+                commentsNode.style.display = 'block'
+            } else {
+                commentsNode.style.display = 'none'
+            }
+        }
+    }
+
+    postElement.addEventListener('click', () => {
+        getComments(post.id, commentsNode)
+        toggleComments(commentsNode)
+    })
     return postElement
 }
 

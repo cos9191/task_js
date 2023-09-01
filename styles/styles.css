@@ -5,7 +5,7 @@
     width: 40px;
     height: 40px;
     animation: spin 0.5s linear infinite;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -15,4 +15,22 @@
 @keyframes spin {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.posts__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post__item {
+    cursor: pointer;
+    border: 2px solid lightblue;
+    border-radius: 10px;
+    padding: 10px;
+    transition: border 0.3s ease;
+}
+
+.post__item:hover {
+    border: 2px solid tomato;
 }

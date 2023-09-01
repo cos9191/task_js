@@ -1,3 +1,3 @@
-import { getPosts } from "./renderPosts.js"
+import { getPosts } from "./getPosts.js"
 
 getPosts()
