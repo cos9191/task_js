@@ -1,4 +1,5 @@
-import { getData } from "./api.js";
+import { getData } from "./api.js"
+import { appendChilds, scrollOnExpand, removeClassWithDelay } from "./helpers.js"
 
 let currentPostNode
 let commentsNode
@@ -6,34 +7,29 @@ const commentsUrl = 'https://jsonplaceholder.typicode.com/comments'
 
 const renderComment = (comment) => {
     const commentNode = document.createElement('li')
-    commentNode.classList.add('post__comment')
+    commentNode.classList.add('post__comment', 'animation')
     commentNode.innerHTML = `<b>${comment.name}:</b> ${comment.body}`
     return commentNode
 }
 
 const renderComments = (comments, commentsNode, currentPostNode) => {
-    const fragment = document.createDocumentFragment()
-    comments.forEach((comment) => {
-        fragment.appendChild(renderComment(comment))
-    })
+    appendChilds(comments, commentsNode, renderComment)
+    scrollOnExpand(commentsNode)
+    removeClassWithDelay('animation', commentsNode, 0)
+
     currentPostNode.removeEventListener('click', getComments)
-    console.log(commentsNode)
-    commentsNode.appendChild(fragment)
 }
 
 const getComments = async function (postId) {
-    currentPostNode = document.querySelectorAll('.post__item')[postId - 1]
+    const postIdLastDigit = (postId - 1) % 10
+
+    currentPostNode = document.querySelectorAll('.post__item')[postIdLastDigit]
     commentsNode = currentPostNode.querySelector('.post__comments-wrapper')
-    console.log(commentsNode)
+
     if (commentsNode.innerHTML.trim() === '') {
         try {
-            // await getData(`${commentsUrl}?postId=${postId}`, renderComments, alert)
-            await getData(
-                `${commentsUrl}?postId=${postId}`,
-                (comments) => {
-                    renderComments(comments, commentsNode, currentPostNode)
-                },
-                alert)
+            const comments = await getData(`${commentsUrl}?postId=${postId}`)
+            renderComments(comments, commentsNode, currentPostNode)
         } catch (error) {
             alert(error)
         }
