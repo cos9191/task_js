@@ -87,6 +87,8 @@ const renderPosts = (posts, page) => {
     }
 }
 
+//wehaa
+
 const renderPaginationButtons = (totalPages) => {
     const containers = document.querySelectorAll('.pagination__vars-wrapper')
 
