@@ -3,7 +3,7 @@ const scrollOnExpand = (node) => {
     const nodeBottomY = node.getBoundingClientRect().bottom + window.scrollY
     if (nodeBottomY > viewportEndY) {
         window.scrollBy({
-            top: nodeBottomY - viewportEndY + 50
+            top: nodeBottomY - viewportEndY + 100 // 100 - доп прокрутка для видимости след поста
         })
     }
 }
@@ -22,4 +22,23 @@ const removeClassWithDelay = (className, Node, Timeout = 0) => {
     })
 }
 
-export { scrollOnExpand, appendChilds, removeClassWithDelay }
+const toggleComments = (node) => {
+    if (node.children.length) {
+        node.classList.toggle("visually-hidden")
+        node.classList.toggle("animation")
+    }
+}
+
+const disableButtons = (buttons, condition) => {
+    buttons.forEach(button => {
+        button.disabled = condition;
+    })
+}
+
+export {
+    scrollOnExpand,
+    appendChilds,
+    removeClassWithDelay,
+    toggleComments,
+    disableButtons
+}

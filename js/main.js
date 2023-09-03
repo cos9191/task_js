@@ -1,3 +1,3 @@
-import { getPosts } from "./pagination.js"
+import { getPosts } from "./getPosts.js"
 
 getPosts()
