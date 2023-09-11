@@ -4,11 +4,11 @@ import {
 } from "./getPosts.js"
 import { disableButtons } from "./helpers.js"
 
-const prevPageButtons = document.querySelectorAll('.btn--prevPage')
-const nextPageButtons = document.querySelectorAll('.btn--nextPage')
+let totalPages
 let currentPage = 1
 const itemsPerPage = 10
-let totalPages
+const prevPageButtons = document.querySelectorAll('.btn--prevPage')
+const nextPageButtons = document.querySelectorAll('.btn--nextPage')
 
 const calculateTotalPages = (posts) => {
     return totalPages = Math.ceil(posts.length / itemsPerPage)
@@ -22,7 +22,6 @@ prevPageButtons.forEach(button => {
         }
     })
 })
-
 
 nextPageButtons.forEach(button => {
     button.addEventListener('click', () => {

@@ -6,6 +6,7 @@ const scrollOnExpand = (node) => {
             top: nodeBottomY - viewportEndY + 100 // 100 - доп прокрутка для видимости след поста
         })
     }
+    console.log('scrollOnExpand')
 }
 
 const appendChilds = (arr, container, cb) => {
@@ -26,6 +27,7 @@ const toggleComments = (node) => {
     if (node.children.length) {
         node.classList.toggle("visually-hidden")
         node.classList.toggle("animation")
+        scrollOnExpand(node)
     }
 }
 
